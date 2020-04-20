@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/services/posts/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -11,7 +12,8 @@ export class PostsComponent implements OnInit {
   posts: any = []
 
   constructor(
-    private postsService: PostsService
+    private postsService: PostsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,5 +26,18 @@ export class PostsComponent implements OnInit {
     })
   }
 
+  onPostClicked(id: any) {
+    this.router.navigate([`posts/post/${id}`], {
+      queryParams: {}
+    })
+  }
+
+  onCommentClicked(postId: any) {
+    this.router.navigate([`posts/comments`], {
+      queryParams: {
+        postId: postId
+      }
+    })
+  }
 
 }
