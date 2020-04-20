@@ -21,6 +21,11 @@ export class CommentsComponent implements OnInit {
       this.postsService.getAllCommentsByPostId(params.postId).then(data => {
         this.comments = data
       })
+
+      this.postsService.getPostById(params.postId).then(data => {
+        this.post = data
+        console.log(data)
+      })
     })
 
   }
