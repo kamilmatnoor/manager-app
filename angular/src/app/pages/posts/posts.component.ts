@@ -17,27 +17,16 @@ export class PostsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.setupContent()
-  }
-
-  setupContent() {
     this.postsService.getAllPosts().then(data => {
       this.posts = data
     })
   }
 
   onPostClicked(id: any) {
-    this.router.navigate([`posts/post/${id}`], {
-      queryParams: {}
-    })
-  }
-
-  onCommentClicked(postId: any) {
-    this.router.navigate([`posts/comments`], {
+    this.router.navigate([`post`], {
       queryParams: {
-        postId: postId
+        postId: id
       }
     })
   }
-
 }
