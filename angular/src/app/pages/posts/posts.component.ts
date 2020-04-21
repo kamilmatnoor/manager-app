@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PostsComponent implements OnInit {
 
-  posts: any = []
+  posts: Array<Post> = []
 
   constructor(
     private postsService: PostsService,
@@ -19,14 +19,23 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.postsService.getAllPosts().then(data => {
       this.posts = data
+    }, (err) => {
+      this.posts = []
     })
   }
 
-  onPostClicked(id: any) {
+  onPostClicked(id: number): void {
     this.router.navigate([`post`], {
       queryParams: {
         postId: id
       }
     })
   }
+}
+
+interface Post {
+  userId: number
+  id: number
+  title: string
+  body: string
 }

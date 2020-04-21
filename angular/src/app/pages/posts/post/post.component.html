@@ -1,23 +1,49 @@
-<main role="main" class="container" *ngIf="comments">
+<main role="main" class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
     <div class="lh-100">
       <h6 class="mb-0 text-white lh-100">Post {{post.id}}</h6>
       <small></small>
     </div>
   </div>
-
   <div class="my-3 p-3 bg-white rounded box-shadow">
     <h5 class=" border-gray pb-2 mb-0">{{post.title}}</h5>
     <h6 class="border-bottom border-gray pb-2 mb-0">{{post.body}}</h6>
     <br>
+    <div>
+      <form [formGroup]="filterForm">
+        <label for="">Filter</label>
+        <div class="form-row">
+          <div class="form-group col">
+            <!-- <label for="name">Filter</label> -->
+            <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name">
+          </div>
+          <div class="form-group col">
+            <!-- <label for="email"></label> -->
+            <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email">
+          </div>
+          <div class="form-group col">
+            <!-- <label for="body"></label> -->
+            <input type="text" class="form-control" id="body" placeholder="Content" formControlName="body">
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onSearchClicked()">Search </button>
+        <button type="button" class="btn btn-secondary ml-1" (click)="onClearClicked()"> Clear</button>
+      </form>
+    </div>
     <div class="media text-muted pt-3" *ngFor="let c of comments">
       <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <div class="d-flex justify-content-between align-items-center w-100">
           <strong class="text-gray-dark">{{c.name}}</strong>
         </div>
+        <span class="d-block">{{c.email}}</span>
         <span class="d-block">{{c.body}}</span>
       </div>
+    </div>
+    <div *ngIf="comments.length < 1" class="text-center">
+      <br>
+      <span class="d-block">No Data</span>
+      <br>
     </div>
     <small class="d-block text-left mt-3">
       <a [routerLink]="" (click)="onBackClicked()">Back</a>
