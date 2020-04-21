@@ -9,12 +9,8 @@ declare var $: any;
 export class AppComponent {
   title = 'angular';
   constructor() {
-    $(function () {
-      'use strict'
-
-      $('[data-toggle="offcanvas"]').on('click', function () {
-        $('.offcanvas-collapse').toggleClass('open')
-      })
+    $('[data-toggle="offcanvas"]').on('click', function () {
+      $('.offcanvas-collapse').toggleClass('open')
     })
   }
 }
